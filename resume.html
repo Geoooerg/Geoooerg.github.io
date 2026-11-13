@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="en"><head><title>Resume – George Kotelawala</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head>
+<body data-page="resume"><header id="nav"></header>
+<main class="wrap">
+  <p class="mono">My background</p>
+  <h1>Resume</h1>
+  <p class="lead">Education, activities, and skills.</p>
+  <!-- To show a PDF here, add a file named resume.pdf to this folder. It appears automatically. -->
+  <div class="pdf" id="pdf" hidden>
+    <a class="btn" href="resume.pdf" download>Download PDF <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 2v9M4 8l4 4 4-4M3 14h10"/></svg></a>
+    <div class="frame"><iframe src="resume.pdf#view=FitH" title="Resume PDF"></iframe></div>
+  </div>
+  <div class="sec"><span class="mono">Education</span><div>
+    <div class="e"><p><strong>University of Florida</strong></p><p class="d">B.S. Electrical Engineering, GPA 4.0. Expected graduation Spring 2029.</p></div>
+    <div class="e"><p><strong>Celebration High School</strong></p><p class="d">IB Diploma, May 2026.</p></div></div></div>
+  <div class="sec"><span class="mono">Activities</span><div>
+    <div class="e"><p><strong>Swamp Launch Rocket Team</strong> <span class="mono">Aug 2026 – Present</span></p><p class="d">Payload Electronics Team Member. 15 hours a week designing PCB-based payload electronics in KiCAD for parachute reefing systems on rockets competing in the IREC 30,000-ft Multistage category.</p></div>
+    <div class="e"><p><strong>Society of Asian Scientists &amp; Engineers (SASE)</strong> <span class="mono">Aug 2026 – Present</span></p><p class="d">SASE Projects. Designing a custom 4-layer PCB flight controller in Altium Designer for autonomous search-and-rescue drones, with a small team over two semesters.</p></div>
+    <div class="e"><p><strong>Program for Collaborative Research</strong> <span class="mono">University of Florida</span></p><p class="d">Comparing generative AI image models and designing a human-subject study on how well people can tell AI-generated images from real photographs.</p></div>
+    <div class="e"><p><strong>IEEE</strong> <span class="mono">Aug 2026 – Present</span></p><p class="d">Open Project Space (OPS). Hands-on circuits, soldering, microcontrollers, and embedded programming projects.</p></div>
+    <div class="e"><p><strong>Society of Hispanic Professionals in Engineering (SHPE)</strong> <span class="mono">Aug 2026 – Present</span></p><p class="d">Journal Club. Discussing and presenting peer-reviewed engineering and STEM research.</p></div>
+    <div class="e"><p><strong>UF Wrestling Club</strong> <span class="mono">Aug 2026 – Present</span></p><p class="d">Member.</p></div>
+    <div class="e"><p><strong>Varsity Wrestling Team, Celebration High School</strong> <span class="mono">2023 – 2026</span></p><p class="d">Captain as a senior. Qualified for regionals twice and earned two OBC placements while completing IB coursework.</p></div>
+    <div class="e"><p><strong>Youth Wrestling Club</strong> <span class="mono">2025 – 2026</span></p><p class="d">Founder. Ran a 5-week youth wrestling program with weekly practices for about 10 students.</p></div></div></div>
+  <div class="sec"><span class="mono">Volunteering</span><div>
+    <div class="e"><p><strong>Give Kids the World Village</strong> <span class="mono">124+ hours</span></p><p class="d">Volunteer. Hospitality, food service, and event support for 20 to 50 guests and families per shift.</p></div></div></div>
+  <div class="sec"><span class="mono">Skills</span><p>Altium Designer, KiCAD, breadboarding, soldering, Microsoft Office, Google Docs and Sheets, Canva, basic video editing, social media management, teamwork and communication.</p></div>
+  <div class="sec"><span class="mono">Honors</span><p>Florida Academic Bright Futures Scholarship, College Board National Recognition Program, AP Scholar with Honor, Celebration Foundation Scholarship, and academic scholarships and grants from UCF, UF, FSU, and USF.</p></div>
+</main>
+<div id="foot"></div><script src="data.js"></script><script src="site.js"></script><script>fetch("resume.pdf",{method:"HEAD"}).then(x=>{if(x.ok)document.getElementById("pdf").hidden=false}).catch(()=>{})</script></body></html>
