@@ -8,19 +8,27 @@ const byNew=(a,b)=>(b.sort||"").localeCompare(a.sort||"");
 const url=p=>`project.html?project=${encodeURIComponent(p.slug)}`;
 
 if(page==="work"){
-  let cat="All",order="new";
+  let cat="All",order="new",evt=null;
   const cats=["All",...new Set(PROJECTS.map(p=>p.category))];
   const arrow='<svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg>';
   $("#timeline").innerHTML=TIMELINE.length
-    ?`<ol>${TIMELINE.map(t=>`<li><span class="mono">${t.date||""}</span><span class="rule" aria-hidden="true"></span><span class="mono">${[t.kind,t.org].filter(Boolean).join(" | ")}</span><span class="who">${t.logo?`<img src="${t.logo}" alt="">`:""}<span>${t.title}</span></span></li>`).join("")}</ol>`
+    ?`<ol>${TIMELINE.map(t=>`<li><button class="ev" data-e="${t.id}" aria-pressed="false"><span class="mono">${t.date||""}</span><span class="rule" aria-hidden="true"></span><span class="mono">${[t.kind,t.org].filter(Boolean).join(" | ")}</span><span class="who">${t.logo?`<img src="${t.logo}" alt="">`:""}<span>${t.title}</span></span></button></li>`).join("")}</ol>`
     :`<p class="empty">Your timeline will appear here once you add entries to TIMELINE in data.js.</p>`;
   const draw=()=>{
     $("#chips").innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${c===cat}" data-c="${c}">${c}</button>`).join("");
-    const l=PROJECTS.filter(p=>cat==="All"||p.category===cat);
+    document.querySelectorAll("#timeline .ev").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.e===evt)));
+    const ev=TIMELINE.find(t=>t.id===evt);
+    const n=ev?PROJECTS.filter(p=>p.event===evt).length:0;
+    $("#evt").innerHTML=ev
+      ?`<span class="mono">Showing</span> <strong>${ev.org}</strong> <span class="mono">${n} ${n===1?"project":"projects"}</span> <button class="linkbtn" data-clear>Show all</button>`
+      :`<span class="mono">Select an event above to see its projects.</span>`;
+    const l=PROJECTS.filter(p=>(cat==="All"||p.category===cat)&&(!evt||p.event===evt));
     l.sort(order==="new"?byNew:order==="old"?(a,b)=>byNew(b,a):order==="az"?(a,b)=>a.title.localeCompare(b.title):(a,b)=>b.title.localeCompare(a.title));
-    $("#list").innerHTML=l.length?l.map((p,i)=>`<li><a class="row" href="${url(p)}"><span class="mono n">${String(i+1).padStart(2,"0")}</span><span class="thumb">${p.image?`<img src="${p.image}" alt="">`:""}</span><span class="rt"><span class="mono">${[p.group,p.date].filter(Boolean).join(" | ")}</span><span class="rtitle">${p.title}</span><span class="rsum">${p.summary||""}</span></span>${arrow}</a></li>`).join(""):`<li class="empty">No projects yet. Add one in data.js and it will show up here.</li>`;
+    $("#list").innerHTML=l.length?l.map((p,i)=>`<li><a class="row" href="${url(p)}"><span class="mono n">${String(i+1).padStart(2,"0")}</span><span class="thumb">${p.image?`<img src="${p.image}" alt="">`:""}</span><span class="rt"><span class="mono">${[p.group,p.date].filter(Boolean).join(" | ")}</span><span class="rtitle">${p.title}</span><span class="rsum">${p.summary||""}</span></span>${arrow}</a></li>`).join(""):`<li class="empty">${!PROJECTS.length?"No projects yet. Add one in data.js and it will show up here.":evt&&!n?"No projects are linked to this event yet.":"No projects match these filters."}</li>`;
   };
   $("#chips").onclick=e=>{const b=e.target.closest(".chip");if(b){cat=b.dataset.c;draw()}};
+  $("#timeline").onclick=e=>{const b=e.target.closest(".ev");if(b){evt=evt===b.dataset.e?null:b.dataset.e;draw()}};
+  $("#evt").onclick=e=>{if(e.target.closest("[data-clear]")){evt=null;draw()}};
   $("#order").onchange=e=>{order=e.target.value;draw()};
   draw();
 }

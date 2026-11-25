@@ -37,6 +37,12 @@ h1{font:700 clamp(2.8rem,9vw,5rem)/1 "DM Sans",system-ui,sans-serif;letter-spaci
 #timeline .rule::after{content:"";position:absolute;left:0;top:0;width:.65rem;height:.65rem;border-radius:50%;background:var(--ink)}
 #timeline .who{display:flex;align-items:center;gap:.7rem;font-weight:500;line-height:1.35}
 #timeline .who img{flex:none;width:2.5rem;height:2.5rem;border-radius:50%;object-fit:cover;background:#fff;border:1px solid var(--line)}
+#timeline .ev{display:flex;flex-direction:column;gap:.5rem;width:100%;margin:0;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+#timeline .ev:focus-visible{outline-offset:-3px}
+#timeline .ev:hover>.who>span,#timeline .ev[aria-pressed="true"]>.who>span{text-decoration:underline;text-underline-offset:.3em}
+#timeline .ev[aria-pressed="true"] .rule::after{box-shadow:0 0 0 4px var(--blush)}
+.evt{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem .75rem;margin:-1.25rem 0 1.25rem;font-size:.9rem}
+.linkbtn{font:inherit;font-size:.85rem;background:none;border:0;padding:0;color:var(--ink);text-decoration:underline;text-underline-offset:.3em;cursor:pointer}
 .bar{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:space-between;align-items:center;margin-bottom:1rem}
 #chips{display:flex;flex-wrap:wrap;gap:.4rem}
 .chip{font:400 .68rem "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase;background:var(--blush);color:var(--ink);border:0;padding:.35rem .7rem;cursor:pointer}
